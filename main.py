@@ -1,6 +1,10 @@
 from fastapi import FastAPI
+from app.router.short_url import router
 
-from app.router.user import User
-
-app = FastAPI()
-User(app=app)
+app = FastAPI(
+    title="Short URL",
+    version="0.0.1",
+    description="Short URL - Fast Api",
+    routes=router.routes
+)
+app.include_router(router)

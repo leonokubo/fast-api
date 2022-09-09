@@ -1,0 +1,17 @@
+version: '3.5'
+services:
+  db:
+    container_name: backoffice.mysql
+    image: mysql:8
+    environment:
+      - MYSQL_ROOT_PASSWORD=admin
+    volumes:
+      - ./.docker/mysql/schemas:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+    networks:
+      - my_networks
+
+networks:
+  my_networks:
+    name: my_networks
