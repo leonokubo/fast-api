@@ -12,3 +12,6 @@ install:
 	pip install -U pip
 	pip install -U setuptools
 	pip install pipenv
+
+create_base:
+	python create_base.py
