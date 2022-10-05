@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+
 from app.router.short_url import router
 
 app = FastAPI(
@@ -8,3 +9,13 @@ app = FastAPI(
     routes=router.routes
 )
 app.include_router(router)
+
+
+@app.on_event('startup')
+async def on_startup() -> None:
+    ...
+
+
+@app.on_event('shutdown')
+async def on_shutdown() -> None:
+    ...

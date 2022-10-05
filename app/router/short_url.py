@@ -1,13 +1,13 @@
 from fastapi import APIRouter, Depends
 from pydantic import BaseModel
 
-from app.dependencies import get_token_header
+# from app.dependencies import get_token_header
 from app.handler.short_url import ShortURL
 
 router = APIRouter(
     prefix="/v1",
     tags=["API"],
-    dependencies=[Depends(get_token_header)],
+    # dependencies=[Depends(get_token_header)],
     responses={404: {"description": "Not found"}},
 )
 
@@ -18,9 +18,9 @@ class SchemaShortURL(BaseModel):
 
 @router.get("/short-url")
 async def read_users():
-    return ShortURL.get()
+    return await ShortURL.get()
 
 
 @router.post("/short-url")
 async def read_user(item: SchemaShortURL):
-    return ShortURL.post(item)
+    return await ShortURL.post(item)

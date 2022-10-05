@@ -24,10 +24,14 @@ engine: AsyncEngine = create_async_engine(
     f"{DRIVE}://{DB_USER}:{DB_PASS}@{DB_HOST}/{DB_NAME}?charset=utf8mb4", **db_config
 )
 
+async_session = sessionmaker(
+    engine, expire_on_commit=False, class_=AsyncSession
+)
+
 
 class Settings(BaseSettings):
     DBBase = declarative_base()
-
+    
     @staticmethod
     def get_session() -> AsyncSession:
         session = sessionmaker(
