@@ -1,10 +1,8 @@
 import time
 
-import aioredis
 from fastapi import FastAPI, Request
-from fastapi_cache import FastAPICache
-from fastapi_cache.backends.redis import RedisBackend
 
+from app.infra.cache.fastapi_cache import CacheApp
 from app.router.short_url import router
 
 app = FastAPI(
@@ -18,14 +16,8 @@ app.include_router(router)
 
 @app.on_event('startup')
 async def on_startup() -> None:
-    redis = aioredis.from_url(
-        url="redis://localhost",
-        encoding="utf8",
-        decode_responses=True,
-        password="a4337bc45a8fc544c03f52dc550cd6e1e87021bc896588bd79e901e2",
-        db=3
-    )
-    FastAPICache.init(RedisBackend(redis), prefix="fastapi-cache")
+    cache = CacheApp()
+    cache.start_app()
 
 
 @app.on_event('shutdown')

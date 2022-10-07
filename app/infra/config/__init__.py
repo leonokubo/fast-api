@@ -11,6 +11,9 @@ DB_PASS = os.getenv("DB_PASS", "admin")
 DB_NAME = os.getenv("DB_NAME", "shorturl")
 DRIVE = os.getenv("DRIVE", "mysql+asyncmy")
 INSTANCE = os.getenv("INSTANCE", "")
+REDIS_HOST = os.getenv("REDIS_HOST", "localhost")
+REDIS_PASSWORD = os.getenv("REDIS_PASSWORD", "a4337bc45a8fc544c03f52dc550cd6e1e87021bc896588bd79e901e2")
+REDIS_DB = os.getenv("REDIS_DB", "3")
 
 db_config = {
     "pool_size": 10,
