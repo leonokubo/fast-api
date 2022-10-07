@@ -1,28 +1,30 @@
 from abc import ABC
 from typing import ClassVar
 
+import short_url as lib_short_url
 from sqlalchemy.future import select
 
+from app.domain.entity import Entity
 from app.domain.entity.short_url import ShortURLDB
-from app.infra.config import setting, async_session
+from app.infra.config import async_session
 
 
 class Repository(ABC):
     _t_entity: ClassVar
 
-    # @property
-    # def session(self):
-    #     return setting.session().select(self._t_entity)
-    #
-    # def save(self, data: dict):
-    #     self.session.add(data)
-    #     return data
-
     async def get(self):
         async with async_session() as session:
-            q = select(self._t_entity)
-            result = await session.execute(q)
+            qry = select(self._t_entity)
+            result = await session.execute(qry)
             return result.scalars().all()
+
+    @staticmethod
+    async def add(base: Entity):
+        async with async_session() as session:
+            session.add(base)
+            await session.flush()
+            base.hash_code = lib_short_url.encode_url(base.id)
+            await session.commit()
 
 
 class ShortUrlRepo(Repository):

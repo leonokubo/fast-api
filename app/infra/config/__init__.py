@@ -34,7 +34,7 @@ async_session = sessionmaker(
 
 class Settings(BaseSettings):
     DBBase = declarative_base()
-    
+
     @staticmethod
     def get_session() -> AsyncSession:
         session = sessionmaker(

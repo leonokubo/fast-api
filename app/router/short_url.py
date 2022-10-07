@@ -25,10 +25,10 @@ class SchemaShortURL(BaseModel):
 @router.get("/short-url")
 @cache(expire=20)
 async def read_users():
-    return await ShortURL.get()
+    return await ShortURL().get()
 
 
 @router.post("/short-url")
-@cache(expire=20)
+@cache(expire=2)
 async def read_user(item: SchemaShortURL):
-    return await ShortURL.post(item)
+    return await ShortURL().post(item)
