@@ -1,7 +1,6 @@
 from abc import ABC
 from typing import ClassVar
 
-import short_url as lib_short_url
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.future import select
 
