@@ -23,7 +23,7 @@ class SchemaShortURL(BaseModel):
 
 
 @router.get("/short-url")
-@cache(expire=20)
+@cache(expire=2)
 async def read_users():
     return await ShortURL().get()
 

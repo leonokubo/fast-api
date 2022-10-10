@@ -1,6 +1,7 @@
 import abc
-from typing import Any as AnyEntity
 import hashlib
+from typing import Any as AnyEntity
+
 from app.domain.entity.short_url import ShortURLDB
 from app.infra.repository.short_url import ShortUrlRepo
 
@@ -14,7 +15,7 @@ class ShortUrlApplication(ApplicationABC):
     @staticmethod
     async def get(_id: int = None):
         response = await ShortUrlRepo().get()
-        return response
+        return [k.to_json() for k in response]
 
     @staticmethod
     async def add(body: AnyEntity):

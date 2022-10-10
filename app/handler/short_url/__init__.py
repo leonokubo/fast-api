@@ -25,3 +25,7 @@ class ShortURL(Handler):
     async def post(self, body) -> dict:
         response = await self.app.add(body)
         return response
+
+
+class Abobrinha(Handler):
+    __app = ResourceWarning

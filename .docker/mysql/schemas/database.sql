@@ -19,19 +19,3 @@ DROP SCHEMA IF EXISTS `shorturl` ;
 -- Schema backoffice_jobs
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `shorturl` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `shorturl` ;
-
--- -----------------------------------------------------
--- Table `backoffice_jobs`.`group`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `shorturl`.`shorturl` (
-  `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `url` TEXT NOT NULL,
-  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `deleted_at` TIMESTAMP NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `idx_created_at` (`created_at` ASC),
-  INDEX `idx_updated_at` (`updated_at` ASC),
-  INDEX `idx_deleted_at` (`deleted_at` ASC))
-ENGINE = InnoDB DEFAULT CHARSET=utf8;
