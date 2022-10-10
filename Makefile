@@ -11,7 +11,7 @@ pep8: clean
 install:
 	pip install -U pip
 	pip install -U setuptools
-	pip install pipenv
+	pip install -r requirements.txt
 
 create_base:
 	python create_base.py

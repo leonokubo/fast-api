@@ -15,4 +15,3 @@
 coverage.xml
 .sonar-scanner/*
 unit.xml
-Pipfile
